@@ -31,4 +31,4 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 add_executable(UnitTest test.cpp)
-target_link_libraries(UnitTest gtest_main Statistics)
+target_link_libraries(UnitTest gtest_main)
