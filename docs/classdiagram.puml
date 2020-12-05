@@ -1,0 +1,71 @@
+@startuml
+
+skinparam ClassBorderColor black
+skinparam ClassBackgroundColor white
+
+package poker {
+
+	interface ICard {
+		+virtual int value() const = 0
+	}
+	hide ICard attributes
+
+	class PlayingCard {
+		+const Face m_face
+		+const Suit m_suit
+		
+		+PlayingCard(Face face, Suit suit)
+		+int value() const override
+		+ostream& operator<<(ostream &out, const PlayingCard &PlayingCard)
+	}
+	
+	class Deck {
+		-const unsigned maxCards
+		-vector<unique_ptr<const ICard>> m_cards
+		+CardCollection(unsigned numDecks)
+		+unique_ptr<const ICard> top()
+		+void shuffle()
+		-void fillDeck()
+	}
+	
+	class PokerHand {}
+	
+	class PokerHandEvaluator {
+		-static int computeValue(PokerHand &hand)
+		+static int evaluate(PokerHand &hand1, PokerHand &hand2)
+	}
+	hide PokerHandEvaluator attributes
+	
+	enum Suit {
+		SPADES
+		CLUBS
+		HEARTS
+		DIAMONDS
+	}
+	hide Suit methods
+	
+	enum Face {
+		TWO
+		THREE
+		FOUR
+		FIVE
+		SIX
+		SEVEN
+		EIGHT
+		NINE
+		TEN
+		JACK
+		QUEEN
+		KING
+		ACE
+	}
+	hide Face methods
+	
+	Deck o- "1..*" ICard
+	PlayingCard -> Suit
+	PlayingCard -> Face
+	ICard <|-- PlayingCard
+	PokerHandEvaluator -> PokerHand
+}
+
+@enduml

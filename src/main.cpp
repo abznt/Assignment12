@@ -1,3 +1,4 @@
+#include "Card.h"
 #include <iostream>
 
 /**
@@ -5,6 +6,7 @@
  */
 int main()
 {
-    std::cout << "Hello World!";
+    Card card{Face::FIVE, Suit::SPADES};
+    std::cout << "Card: " << card;
     return 0;
 }
