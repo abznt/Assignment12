@@ -9,19 +9,20 @@ class Hand
 {
   public:
     static constexpr size_t MAX_CARDS = 5;
-    using CARD = std::unique_ptr<const Card>;
-    using CARDS = std::vector<CARD>;
+    using CARD_PTR = std::unique_ptr<const Card>;
 
   private:
-    CARDS m_cards;
+    std::vector<CARD_PTR> m_cards;
 
   public:
     Hand() = default;
 
     [[nodiscard]] size_t numCards() const;
-    void addCard(CARD card);
-    CARD removeCard(size_t index);
-    [[nodiscard]] const std::vector<Card> viewCards() const;
+    [[nodiscard]] bool full() const;
+    void addCard(CARD_PTR card);
+    CARD_PTR removeCard(size_t index);
+    [[nodiscard]] Card peekCard(size_t index) const;
+    [[nodiscard]] std::vector<Card> viewCards() const;
     void clear();
 };
 

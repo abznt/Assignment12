@@ -30,5 +30,5 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
     include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-add_executable(UnitTest CardTests.cpp DeckTests.cpp HandTests.cpp)
+add_executable(UnitTest CardTests.cpp DeckTests.cpp HandTests.cpp HandComparatorTests.cpp)
 target_link_libraries(UnitTest gtest_main poker)

@@ -32,10 +32,16 @@ void Deck::shuffle()
     }
 }
 
-const Card Deck::peekTopCard() const
+Card Deck::peekTopCard() const
 {
-    const Card copy{m_cards.back().get()};
-    return copy;
+    if (!empty())
+    {
+        return Card(m_cards.back().get());
+    }
+    else
+    {
+        throw std::runtime_error("Deck is empty");
+    }
 }
 
 std::unique_ptr<const Card> Deck::removeTopCard()
