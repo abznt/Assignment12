@@ -1,6 +1,6 @@
+#include "framework/Card.h"
+#include "framework/Deck.h"
 #include "gtest/gtest.h"
-#include "Deck.h"
-#include "Card.h"
 
 TEST(DeckTests, TestConstructor)
 {

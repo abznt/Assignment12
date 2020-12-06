@@ -1,6 +1,6 @@
+#include "framework/Card.h"
+#include "framework/Hand.h"
 #include "gtest/gtest.h"
-#include "Hand.h"
-#include "Card.h"
 
 TEST(HandTests, TestConstructor)
 {

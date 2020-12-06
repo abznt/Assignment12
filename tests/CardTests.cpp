@@ -1,5 +1,5 @@
+#include "framework/Card.h"
 #include "gtest/gtest.h"
-#include "Card.h"
 
 TEST(CardTests, TestConstructor)
 {

@@ -1,20 +1,20 @@
 set(libname poker)
 
 set(sources
-        Suit.h
-        Face.h
-        Card.cpp
-        Card.h
-        CardConversions.cpp
-        CardConversions.h
-        Deck.cpp
-        Deck.h
-        Hand.cpp
-        Hand.h
-        HandEvaluator.h
-        HandEvaluator.cpp
-        HandComparator.cpp
-        HandComparator.h)
+        framework/Suit.h
+        framework/Face.h
+        framework/Card.cpp
+        framework/Card.h
+        framework/CardConversions.h
+        framework/Deck.cpp
+        framework/Deck.h
+        framework/Hand.cpp
+        framework/Hand.h
+        framework/HandEvaluator.h
+        framework/HandEvaluator.cpp
+        framework/HandComparator.cpp
+        framework/HandComparator.h
+        game/IParticipant.h)
 
 add_library(${libname} STATIC ${sources})
 target_include_directories(${libname} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
