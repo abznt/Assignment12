@@ -1,0 +1,11 @@
+#ifndef ASSIGNMENT12_BETTINGRESULT_H
+#define ASSIGNMENT12_BETTINGRESULT_H
+
+enum class BettingResult
+{
+    FOLD,
+    CHECK,
+    BET
+};
+
+#endif // ASSIGNMENT12_BETTINGRESULT_H

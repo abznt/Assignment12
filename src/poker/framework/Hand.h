@@ -2,8 +2,10 @@
 #define ASSIGNMENT12_HAND_H
 
 #include "Card.h"
+#include "CardConversions.h"
 #include <memory>
 #include <vector>
+#include <iostream>
 
 class Hand
 {
@@ -25,5 +27,16 @@ class Hand
     [[nodiscard]] std::vector<Card> viewCards() const;
     void clear();
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Hand& hand)
+{
+    os << "{ ";
+    for (auto &card : hand.viewCards())
+    {
+        os << "[" << card << "] ";
+    }
+    os << "}";
+    return os;
+}
 
 #endif // ASSIGNMENT12_HAND_H

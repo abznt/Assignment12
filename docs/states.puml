@@ -1,0 +1,65 @@
+@startuml
+
+skinparam ClassBorderColor black
+skinparam ClassBackgroundColor white
+
+package states {
+interface IState {
+    +virtual void processTurn() = 0
+}
+hide IState attributes
+
+class BettingRound {
+    -PokerGame* m_game
+    -unsigned m_round
+    -vector<shared_ptr<AParticipant>> m_removeList
+    +BettingRound(PokerGame *game, unsigned round)
+    +void processTurn() override
+    -void processBets(queue<shared_ptr<AParticipant>> bettingQueue)
+    -void removeParticipants()
+}
+
+class DealingRound {
+    -PokerGame* m_game
+    +DealingRound(PokerGame *game)
+    +void processTurn() override
+}
+
+class DrawRound {
+    -PokerGame* m_game
+    +DrawRound(PokerGame *game)
+    +void processTurn() override
+}
+
+class EvaluateRound {
+    -PokerGame* m_game
+    +EvaluateRound(PokerGame *game)
+    +void processTurn() override
+}
+
+class GameOver {
+    -PokerGame* m_game
+    +GameOver(PokerGame *game)
+    +void processTurn() override
+    -bool queryNewGame(unsigned &newGame)
+}
+
+class GameStart {
+    -PokerGame* m_game
+    +GameStart(PokerGame *game)
+    +void processTurn() override
+    -bool queryNumPlayers(size_t& numPlayers, size_t& numCpus)
+    -bool queryStartingMoney(unsigned& startingMoney)
+    -bool queryMinimumBet(unsigned& minimumBet)
+}
+
+GameStart -|> IState
+IState <|- GameOver
+IState <|-- BettingRound
+IState <|-- EvaluateRound
+IState <|-- DrawRound
+DealingRound --|> IState
+
+}
+
+@enduml

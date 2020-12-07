@@ -24,6 +24,7 @@ class Deck
     void shuffle();
     Card peekTopCard() const;
     std::unique_ptr<const Card> removeTopCard();
+    void reset();
 
     [[nodiscard]] size_t numCards() const
     {

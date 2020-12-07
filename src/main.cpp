@@ -1,4 +1,4 @@
-#include "framework/Card.h"
+#include "game/PokerGame.h"
 #include <iostream>
 
 /**
@@ -6,7 +6,12 @@
  */
 int main()
 {
-    Card card{Face::FIVE, Suit::SPADES};
-    std::cout << "Card: " << card;
+    std::cout << "Welcome to the Assignment12 Poker Game!\n";
+    PokerGame game{};
+    while (game.playing())
+    {
+        game.processTurn();
+    }
+    std::cout << "Thank you for playing!\n";
     return 0;
 }

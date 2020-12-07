@@ -1,0 +1,96 @@
+@startuml
+
+skinparam ClassBorderColor black
+skinparam ClassBackgroundColor white
+
+package poker {
+package framework {
+    enum Suit <char> {
+        SPADES = 'S'
+        CLUBS = 'C'
+        HEARTS = 'H'
+        DIAMONDS = 'D'
+    }
+    hide Suit methods
+
+    enum Face <int> {
+        TWO = 2
+        THREE = 3
+        FOUR = 4
+        FIVE = 5
+        SIX = 6
+        SEVEN = 7
+        EIGHT = 8
+        NINE = 9
+        TEN = 10
+        JACK = 11
+        QUEEN = 12
+        KING = 13
+        ACE = 14
+    }
+    hide Face methods
+
+    class Card {
+        +const Face face;
+        +const Suit suit;
+        +Card(Face face, Suit suit)
+        +Card(const Card* other)
+        +int value() const
+    }
+
+    class Hand {
+        +MAX_CARDS = 5
+        -vector<unique_ptr<const Card>> m_cards
+        +Hand()
+        +size_t numCards() const
+        +bool full() const
+        +void addCard(unique_ptr<const Card> card)
+        +unique_ptr<const Card> removeCard(size_t index)
+        +Card peekCard(size_t index) const
+        +vector<Card> viewCards() const
+        +void clear()
+    }
+
+    class Deck {
+        +static const vector<Face> faces
+        +static const vector<Suit> suits
+        -vector<unique_ptr<const Card>> m_cards
+        -mt19937 m_rng
+        +Deck()
+        +void shuffle()
+        +Card peekTopCard() const
+        +unique_ptr<const Card> removeTopCard()
+        +void reset()
+        +size_t numCards() const
+        +bool empty() const
+        -void fillDeck()
+    }
+
+    class CardConversions {
+        +static const map<Face, string> faceToStringMap
+        +static const map<Face, size_t> faceToIndexMap
+        +static const map<Suit, string> suitToStringMap
+    }
+    hide CardConversions methods
+
+    class HandEvaluator {
+        +static unsigned evaluate(const Hand &hand)
+    }
+    hide HandEvaluator attributes
+
+    class HandComparator {
+        +static int compare(const Hand *hand1, const Hand &hand2,\n\t unsigned (*evaluateFcn)(const Hand &))
+    }
+    hide HandComparator attributes
+
+    Card -> Face
+    Suit <- Card
+    Card "0..5" --o Hand
+    Card "0..52" --o Deck
+    HandComparator -> Hand
+    HandEvaluator --> Hand
+    HandEvaluator <-- HandComparator
+}
+}
+
+@enduml

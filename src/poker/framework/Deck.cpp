@@ -58,6 +58,13 @@ std::unique_ptr<const Card> Deck::removeTopCard()
     }
 }
 
+
+void Deck::reset()
+{
+    m_cards.clear();
+    fillDeck();
+}
+
 void Deck::fillDeck()
 {
     for (auto &suit : suits)
